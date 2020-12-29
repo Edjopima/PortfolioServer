@@ -1,0 +1,11 @@
+{
+  "name": "mailserver",
+  "version": "1.0.0",
+  "description": "api to send me a mail from my personal portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eduardo Piña",
+  "license": "MIT"
+}
