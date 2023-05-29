@@ -64,44 +64,8 @@ const sendMail = async ({ name, email, subject, message }) => {
   }
 };
 
-const sendMailTrapMail = async ({ name, email, subject, message }) => {
-  try {
-    const smtpTransport = nodemailer.createTransport({
-      host: process.env.MAILTRAP_HOST,
-      port: 2525,
-      auth: {
-        user: process.env.MAILTRAP_USER,
-        pass: process.env.MAILTRAP_PASSWORD,
-      },
-    });
-
-    const template = buildTemplate({
-      name,
-      email,
-      subject,
-    });
-
-    const mailOptions = {
-      from: `Portfolio <${process.env.GMAIL_USER}>`,
-      to: process.env.EMAIL_TO_SEND,
-      subject: subject,
-      html: template,
-    };
-    const result = await smtpTransport.sendMail(mailOptions);
-    return result;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 app.post("/sendMail", (req, res) => {
   sendMail(req.body)
-    .then((result) => res.status(200).json("Send"))
-    .catch((err) => console.log(err));
-});
-
-app.post("/sendMailTrapMail", (req, res) => {
-  sendMailTrapMail(req.body)
     .then((result) => res.status(200).json("Send"))
     .catch((err) => console.log(err));
 });
